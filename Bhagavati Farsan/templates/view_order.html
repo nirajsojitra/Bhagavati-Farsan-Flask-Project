@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <title>Bhagavati Farsan - Order Detail Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="main">
+        <div class="banner">
+            <h1>Order Detail</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('home') }}">Home</a><span>/ Order Detail</span>
+        </div>
+        <section class="order-detail">
+            <div class="title">
+                <img src="{{ url_for('static', filename='img/download.png') }}" alt="" class="logo">
+                <h1>Order Detail</h1>
+                <p>View your order details, including items purchased, shipping information, and estimated delivery date. Stay informed about your green coffee purchase!</p>
+            </div>
+            <div class="box-container">
+                {% if order and product %}
+                    <div class="box">
+                        <div class="col">
+                            <p class="title"><i class="bi bi-calendar-fill"></i> {{ order.date }}</p>
+                            <img src="{{ url_for('static', filename='img/' + product.image) }}" alt="" class="img">
+                            <p class="price">{{ product.price }} x {{ order.qty }}</p>
+                            <h3 class="name">{{ product.name }}</h3>
+                            <p class="grand-total">Total Amount Payable: <span>₹{{ grand_total }}</span></p>
+                        </div>
+                        <div class="col">
+                            <p class="title">Billing Address</p>
+                            <p class="user"><i class="bi bi-person-bounding-box"></i>{{ order.name }}</p>
+                            <p class="user"><i class="bi bi-phone"></i>{{ order.number }}</p>
+                            <p class="user"><i class="bi bi-envelope"></i>{{ order.email }}</p>
+                            <p class="user"><i class="bi bi-pin-map-fill"></i>{{ order.address }}</p>
+                            <p class="title">Status</p>
+                            <p class="status" style="color: {% if order.status == 'complete' %}green{% elif order.status == 'canceled' %}red{% else %}red{% endif %};">{{ order.status }}</p>
+                            {% if order.status == 'canceled' %}
+                                <a href="{{ url_for('checkout', get_id=product.id) }}" class="btn">Order Again</a>
+                            {% else %}
+                                <form action="{{ url_for('cancel_order') }}" method="post">
+                                    <input type="hidden" name="order_id" value="{{ order.id }}">
+                                    <button type="submit" name="cancel" class="btn" onclick="return confirm('Do you want to cancel this order?')">Cancel Order</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% else %}
+                    <p class="empty">No order found!</p>
+                {% endif %}
+            </div>
+        </section>
+        {% include 'footer.html' %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% include 'alert.html' %}
+</body>
+</html>
+

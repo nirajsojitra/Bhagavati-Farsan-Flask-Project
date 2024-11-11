@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Document</title>
+</head>
+<body>
+
+<header class="header">
+    <div class="flex">
+        <a href="{{ url_for('home') }}" class="logo"><img src="{{ url_for('static', filename='img/logo.png') }}"></a>
+        <nav class="navbar">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('view_product') }}">Products</a>
+            <a href="{{ url_for('order') }}">Orders</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+            <a href="{{ url_for('contact') }}">Contact Us</a>
+        </nav>
+        
+        <div class="icons">
+            <i class="bx bxs-user" id="user-btn"></i>
+
+            {# Wishlist count #}
+            <a href="{{ url_for('wishlist') }}" class="cart-btn">
+                <i class="bx bx-heart"></i>
+                
+            </a>
+
+            {# Cart count #}
+            <a href="{{ url_for('cart') }}" class="cart-btn">
+                <i class="bx bx-cart-download"></i>
+                
+            </a>
+
+            <i class="bx bx list-plush" id="menu-btn" style="font-size: 2rem;"></i>
+        </div>
+        
+        <div class="user-box">
+            {# Check if the user is logged in #}
+           
+                <p>Username: <span>{{ session['user_name'] }}</span></p>
+                <p>Email: <span>{{ session['user_email'] }}</span></p>
+                <a href="{{ url_for('login') }}" class="btn">Login</a>
+                <a href="{{ url_for('register') }}" class="btn">Register</a>
+                <form method="post" action="{{ url_for('logout') }}">
+                    <button type="submit" name="logout" class="logout-btn">Log Out</button>
+                </form>
+           
+        </div>
+    </div>
+</header>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_style.css') }}">
+    <title>Bhagavati Farsan Admin Panel - Add Products Page</title>
+</head>
+<body>
+
+    {% include 'admin_header.html' %}
+
+    <div class="main">
+        <div class="banner">
+            <h1>Add Products</h1>
+         </div>
+        <div class="title2">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a><span>/ Add Products</span>
+        </div>
+
+        <section class="dashboard">
+            <h1 class="heading">Add Products</h1>
+
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="input-field">
+                    <label>Product Name <sup>*</sup></label>
+                    <input type="text" name="name" maxlength="100" required placeholder="Add product name">
+                </div>
+                <div class="input-field">
+                    <label>Product wheight <sup>*</sup></label>
+                    <input type="number" name="wheight" maxlength="100" required placeholder="Add product wheight">
+                </div>
+                <div class="input-field">
+                    <label>Product Price <sup>*</sup></label>
+                    <input type="number" name="price" maxlength="100" required placeholder="Add product price">
+                </div>
+                <div class="input-field">
+                    <label>Product Detail <sup>*</sup></label>
+                    <textarea name="content" required maxlength="10000" placeholder="Write product description"></textarea>
+                </div>
+                <div class="input-field">
+                    <label>Product Image <sup>*</sup></label>
+                    <input type="file" name="image" accept="image/*" required>
+                </div>
+                <div class="flex-btn">
+                    <button type="submit" name="publish" class="btn">Publish Product</button>
+                    <button type="submit" name="draft" class="btn">Save as Draft</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    {% include 'alert.html' %}
+
+</body>
+</html>

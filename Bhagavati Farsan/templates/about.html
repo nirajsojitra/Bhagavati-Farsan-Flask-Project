@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Bhagavati Farsan - About Us Page</title>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <div class="main">
+        <div class="banner">
+            <h1>About Us</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('home') }}">Home</a><span> / About</span>
+        </div>
+
+       
+        <section class="services">
+            <div class="title">
+                <img src="{{ url_for('static', filename='img/download.png') }}" class="logo" alt="">
+                <h1>Why Choose Us</h1>
+                <p>"Choose Bhagavati Farsan Shop for authentic, delicious, and freshly prepared Indian snacks, made with love and quality ingredients."</p>
+            </div>
+            <div class="box-container">
+                <div class="box">
+                    <img src="{{ url_for('static', filename='img/icon2.png') }}" alt="">
+                    <div class="detail">
+                        <h3>Great Savings</h3>
+                        <p>Save big on every order</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='img/icon1.png') }}" alt="">
+                    <div class="detail">
+                        <h3>24/7 Support</h3>
+                        <p>One-on-one support</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='img/icon0.png') }}" alt="">
+                    <div class="detail">
+                        <h3>Gift Vouchers</h3>
+                        <p>Vouchers on every festival</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='img/icon.png') }}" alt="">
+                    <div class="detail">
+                        <h3>Worldwide Delivery</h3>
+                        <p>Deliver worldwide via drone</p>
+                    </div>
+                </div>                
+            </div>
+        </section>
+
+        
+
+        <div class="testimonial-container">
+            <div class="title">
+                <img src="{{ url_for('static', filename='img/download.png') }}" alt="">
+                <h1>What People Say About Us</h1>
+                <p>What Our Customers Are Saying</p>
+            </div>
+            <div class="container">
+                <div class="testimonial-item active">
+                    <img src="{{ url_for('static', filename='img/01.jpg') }}" alt="">
+                    <h1>Dhruvi Patel</h1>
+                    <p>Bhagavati Farsan Shop offers the best and freshest snacks in town! The flavors are authentic, and the quality is always consistent. Highly recommend!</p>
+                </div>
+
+                <div class="testimonial-item">
+                    <img src="{{ url_for('static', filename='img/02.jpg') }}" alt="">
+                    <h1>Deep Vaghasiya</h1>
+                    <p>Amazing variety of farsan! Everything is always freshly made, and the taste reminds me of home. A must-visit for snack lovers.</p>
+                </div>
+
+                <div class="testimonial-item">
+                    <img src="{{ url_for('static', filename='img/03.jpg') }}" alt="">
+                    <h1>Priya Patel</h1>
+                    <p>I love the quality and taste of Bhagavati's snacks. They never disappoint, and their customer service is excellent!</p>
+                </div>
+
+                <div class="testimonial-item">
+                    <img src="{{ url_for('static', filename='img/04.png') }}" alt="">
+                    <h1>Kaxxa Vaghasiya</h1>
+                    <p>Best place for traditional Indian snacks. Every item is delicious, fresh, and packed with flavor. I'm a regular customer.</p>
+                </div>
+
+                <div class="left-arrow" onclick="nextSlide()"><i class="bx bxs-left-arrow-alt"></i></div>
+                <div class="right-arrow" onclick="prevSlide()"><i class="bx bxs-right-arrow-alt"></i></div>
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    
+    <script>
+        const header = document.querySelector('header');
+function fixedNavbar(){
+    header.classList.toggle('scroll', window.pageYOffset > 0)
+}
+fixedNavbar();
+window.addEventListener('scroll', fixedNavbar);
+
+let menu = document.querySelector('#menu-btn');
+let userBtn = document.querySelector('#user-btn');
+
+menu.addEventListener('click', function(){
+    let nav = document.querySelector('.navbar');
+    nav.classList.toggle('active');
+})
+userBtn.addEventListener('click', function(){
+    let userBox = document.querySelector('.user-box');
+    userBox.classList.toggle('active')
+})
+        let slides = document.querySelectorAll('.testimonial-item');
+        let index = 0;
+
+        function nextSlide(){
+            slides[index].classList.remove('active');
+            index = (index + 1) % slides.length;
+            slides[index].classList.add('active');
+        }
+        function prevSlide(){
+            slides[index].classList.remove('active');
+            index = (index - 1 + slides.length) % slides.length;
+            slides[index].classList.add('active');
+        } 
+    </script>
+    
+
+    {% include 'alert.html' %}
+</body>
+</html>

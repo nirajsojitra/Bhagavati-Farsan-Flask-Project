@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <title>Bhagavati Farsan - Wishlist Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="main">
+        <div class="banner">
+            <h1>My Wishlist</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('home') }}">Home </a><span>/ Wishlist</span>
+        </div>
+        <section class="products">
+            <h1 class="title">Products added in Wishlist</h1>
+            <div class="box-container">
+                {% if wishlist_items %}
+                    {% for wishlist in wishlist_items %}
+                        <form action="" method="post" class="box">
+                            <input type="hidden" name="wishlist_id" value="{{ wishlist.id }}">
+                            <img src="{{ url_for('static', filename='img/' + wishlist.product.image) }}" alt="" class="img">
+                            <div class="button">
+                                <button type="submit" name="add_to_cart"><i class="bx bx-cart"></i></button>
+                                <a href="{{ url_for('view_page', pid=wishlist.product.id) }}" class="bx bxs-show"></a>
+                                <button type="submit" name="delete_item" onclick="return confirm('Delete this item?');"><i class="bx bx-x"></i></button>
+                            </div>
+                            <h3 class="name">{{ wishlist.product.name }}</h3>
+                            <input type="hidden" name="product_id" value="{{ wishlist.product.id }}">
+                            <div class="flex">
+                                <p class="price">Price ₹{{ wishlist.product.price }} /-</p>
+                            </div>
+                            <a href="" class="btn">Buy Now</a>
+                        </form>
+                    {% endfor %}
+                {% else %}
+                    <p class="empty">No products added yet!</p>
+                {% endif %}
+            </div>
+        </section>
+
+        {% include 'footer.html' %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% include 'alert.html' %}
+</body>
+</html>

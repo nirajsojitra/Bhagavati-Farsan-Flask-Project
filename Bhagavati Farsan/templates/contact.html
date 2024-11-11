@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Bhagavati Farsan - Contact Page</title>
+</head>
+<body>
+    {% include 'header.html' %}
+<div class="main">
+    <div class="banner">
+        <h1>Contact Us</h1>
+    </div>
+    <div class="title2">
+        <a href="{{ url_for('home') }}">Home</a> <span>/ Contact Us</span>
+    </div>
+
+    <section class="services">
+        <div class="box-container">
+            <div class="box">
+                <img src="{{ url_for('static', filename='image/icon2.png') }}" alt="">
+                <div class="detail">
+                    <h3>Great Savings</h3>
+                    <p>Save big on every order</p>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='image/icon1.png') }}" alt="">
+                <div class="detail">
+                    <h3>24*7 Support</h3>
+                    <p>One-on-one support</p>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='image/icon0.png') }}" alt="">
+                <div class="detail">
+                    <h3>Gift Vouchers</h3>
+                    <p>Vouchers on every festival</p>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='image/icon.png') }}" alt="">
+                <div class="detail">
+                    <h3>Worldwide Delivery</h3>
+                    <p>Drone-ship worldwide</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="form-container">
+        <form method="post">
+            <div class="title">
+                <img src="{{ url_for('static', filename='image/download.png') }}" class="logo">
+                <h1>Leave A Message</h1>
+            </div>
+            <div class="input-field">
+                <p>Your Name <sub>*</sub></p>
+                <input type="text" name="name" required>
+            </div>
+            <div class="input-field">
+                <p>Your Email <sub>*</sub></p>
+                <input type="email" name="email" required>
+            </div>
+            <div class="input-field">
+                <p>Your Number <sub>*</sub></p>
+                <input type="tel" name="number" required>
+            </div>
+            <div class="input-field">
+                <p>Your Message <sub>*</sub></p>
+                <textarea name="message" required></textarea>
+            </div>
+            <button type="submit" name="submit-btn" class="btn">Send Message</button>
+        </form>
+    </div>
+
+    <div class="address">
+        <div class="title">
+            <img src="{{ url_for('static', filename='image/download.png') }}" class="logo">
+            <h1>Contact Detail</h1>
+            <p>Reach out to us for questions or support anytime!</p>
+        </div>
+        <div class="box-container">
+            <div class="box">
+                <i class="bx bxs-map-pin"></i>
+                <div>
+                    <h4>Address</h4>
+                    <p>Vadodara</p>
+                </div>
+            </div>
+            <div class="box">
+                <i class="bx bxs-phone-call"></i>
+                <div>
+                    <h4>Phone Number</h4>
+                    <p>6351505351</p>
+                </div>
+            </div>
+            <div class="box">
+                <i class="bx bxs-map-pin"></i>
+                <div>
+                    <h4>Email</h4>
+                    <p>bhagavatifarsan@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% include 'footer.html' %}
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% include 'alert.html' %}
+</body>
+</html>

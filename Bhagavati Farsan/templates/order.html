@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <title>Bhagavati Farsan - Order Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <div class="main">
+        <div class="banner">
+            <h1>My Orders</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('home') }}">Home</a> <span>/ Order</span>
+        </div>
+        <section class="orders">
+            <div class="title">
+                <img src="{{ url_for('static', filename='img/download.png') }}" alt="" class="logo">
+                <h1>My Orders</h1>
+                <p>Track your order status, view details, and manage your purchases easily. Stay updated on delivery and enjoy your green coffee.</p>
+            </div>
+            <div class="box-container">
+                {% if orders %}
+                    {% for order in orders %}
+                        <div class="box" style="border: 2px solid {% if order.status == 'canceled' %} red {% endif %};">
+                            <a href="{{ url_for('view_order', get_id=order['order_id']) }}">
+                                <p class="date"><i class="bi bi-calendar-fill"></i><span>{{ order['date'] }}</span></p>
+                                <img src="{{ url_for('static', filename='img/' + order['product_image']) }}" alt="" class="img">
+                                <div class="row">
+                                    <h3 class="name">{{ order['product_name'] }}</h3>
+                                    <p class="price">Price: ₹{{ order['price'] }} x {{ order['qty'] }}</p>
+                                    <p class="status" style="color: {% if order['status'] == 'canceled' %} red {% else %} green {% endif %};">
+                                        {{ order['status'] | capitalize }}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="empty">No orders placed yet!</p>
+                {% endif %}
+            </div>
+        </section>
+
+        {% include 'footer.html' %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <title>Bhagavati Farsan - Shop Page</title>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <div class="main">
+        <div class="banner">
+            <h1>Shop</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('home') }}">Home </a><span>/ Our Shop</span>
+        </div>
+        <section class="products">
+            <div class="box-container">
+                {% if products %}
+                    {% for product in products %}
+                    <form action="" method="post" class="box">
+                        <img src="{{ url_for('static', filename='img/' + product['image']) }}" alt="" class="img">
+                        <div class="button">
+                            <button type="submit" name="add_to_cart"><i class="bx bx-cart"></i></button>
+                            <button type="submit" name="add_to_wishlist"><i class="bx bx-heart"></i></button>
+                            <a href="{{ url_for('view_page', pid=product.id) }}" class="bx bxs-show"></a>
+                        </div>
+                        <h3 class="name">{{ product.name }}</h3>
+                        <h4 class="wheight">{{ product.wheight }}g</h4>
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <div class="flex">
+                            <p class="price">Price ₹{{ product.price }}/-</p>
+                            <input type="number" name="qty" required min="1" value="1" max="99" class="qty">
+                        </div>
+                        <a href="{{ url_for('checkout', product_id=product['product_id']) }}" class="btn">Buy Now</a>
+                    </form>
+                    {% endfor %}
+                {% else %}
+                    <p class="empty">No products added yet!</p>
+                {% endif %}
+            </div>
+        </section>
+
+        {% include 'footer.html' %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% include 'alert.html' %}
+</body>
+</html>

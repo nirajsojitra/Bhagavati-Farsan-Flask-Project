@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_style.css') }}">
+    <title>Bhagavati Farsan Admin Panel - Edit Product Page</title>
+</head>
+<body>
+    {% include 'admin_header.html' %}
+
+    <div class="main">
+        <div class="banner">
+            <h1>Edit Product</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a><span> / Edit Product</span>
+        </div>
+
+        <section class="edit-post">
+            <h1 class="heading">Edit Product</h1>
+
+            <div class="form-container">
+                <form action="{{ url_for('edit_product', id=product['id']) }}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="old_image" value="{{ product['image'] }}">
+                    <input type="hidden" name="product_id" value="{{ product['id'] }}">
+
+                    <div class="input-field">
+                        <label>Update Status</label>
+                        <select name="status">
+                            <option value="{{ product['status'] }}" selected>{{ product['status'] }}</option>
+                            <option value="active">Active</option>
+                            <option value="deactive">Deactive</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Product Name</label>
+                        <input type="text" name="name" value="{{ product['name'] }}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Product Price</label>
+                        <input type="number" name="price" value="{{ product['price'] }}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Product Description</label>
+                        <textarea name="content">{{ product['product_details'] }}</textarea>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Product Image</label>
+                        <input type="file" name="image" accept="image/*">
+                        <img src="{{ url_for('static', filename='img/' ~ product['image']) }}" alt="Product Image">
+                    </div>
+
+                    <div class="flex-btn">
+                        <button type="submit" name="update" class="btn">Update Product</button>
+                        <a href="{{ url_for('view_product') }}" class="btn">Go Back</a>
+                        <button type="submit" name="delete" class="btn" onclick="return confirm('Delete this product?');">Delete Product</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% include 'alert.html' %}
+</body>
+</html>

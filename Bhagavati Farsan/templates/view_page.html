@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <title>Bhagavati Farsan- Product Detail</title>
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    
+    <div class="main">
+        <div class="banner">
+            <h1>Product Detail</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('home') }}">Home</a><span>/ Product Detail</span>
+        </div>
+        <section class="view_page">
+            {% if product %}
+            <form action="" method="post">
+                <img src="{{ url_for('static', filename='img/' ~ product.image) }}" class="img">
+                <div class="detail">
+                    <div class="price">${{ product.price }}/-</div>
+                    <div class="name">{{ product.name }}</div>
+                    <div class="detail">
+                        <p>{{ product.product_details }}</p>
+                    </div>
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <div class="button">
+                        <button type="submit" name="add_to_wishlist" class="btn">add to wishlist<i class="bx bx-heart"></i></button>
+                        <input type="hidden" name="qty" value="1" min="0" class="quantity">
+                        <button type="submit" name="add_to_cart" class="btn">add to cart<i class="bx bx-cart"></i></button>
+                    </div>
+                </div>
+            </form>
+            {% else %}
+            <p>Product not found.</p>
+            {% endif %}
+        </section>
+
+        {% include 'footer.html' %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ url_for('static', filename='script/script.js') }}"></script>
+    {% include 'alert.html' %}
+</body>
+</html>

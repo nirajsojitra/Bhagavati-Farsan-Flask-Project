@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <title>Bhagavati Farsan - Checkout Page</title>
+</head>
+<body>
+    {% include 'header.html' %}
+    
+    <div class="main">
+        <div class="banner">
+            <h1>Checkout Summary</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('home') }}">Home </a><span>/ checkout summary</span>
+        </div>
+        <section class="checkout">
+            <div class="title">
+                <img src="{{ url_for('static', filename='img/download.png') }}" alt="" class="logo">
+                <h1>Checkout Summary</h1>
+                <p>Review your checkout summary, including item totals, shipping costs, and estimated delivery. Complete your purchase and enjoy your green coffee!</p>
+            </div>
+            <div class="row">
+                <form action="" method="post">
+                    <h3>Billing Details</h3>
+                    <div class="flex">
+                        <div class="box">
+                            <div class="input-field">
+                                <p>Your Name <span>*</span></p>
+                                <input type="text" name="name" required maxlength="50" placeholder="Enter Your Name" class="input">
+                            </div>
+                            <div class="input-field">
+                                <p>Your Number <span>*</span></p>
+                                <input type="number" name="number" required maxlength="10" placeholder="Enter Your Number" class="input">
+                            </div>
+                            <div class="input-field">
+                                <p>Your email <span>*</span></p>
+                                <input type="email" name="email" required maxlength="50" placeholder="Enter Your Email" class="input">
+                            </div>
+                            <div class="input-field">
+                                <p>Payment Method <span>*</span></p>
+                                <select name="method" class="input">
+                                    <option value="cash on delivery">Cash On Delivery</option>
+                                </select>
+                            </div>
+                            <div class="input-field">
+                                <p>Address Type <span>*</span></p>
+                                <select name="address_type" class="input">
+                                    <option value="home">Home</option>
+                                    <option value="office">Office</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="input-field">
+                                <p>Address Line 01 <span>*</span></p>
+                                <input type="text" name="flat" required maxlength="50" placeholder="e.g Flat & Building Number" class="input">
+                            </div>
+                            <div class="input-field">
+                                <p>Address Line 02 <span>*</span></p>
+                                <input type="text" name="street" required maxlength="50" placeholder="e.g Street Name" class="input">
+                            </div>
+                            <div class="input-field">
+                                <p>City Name <span>*</span></p>
+                                <input type="text" name="city" required maxlength="50" placeholder="Enter Your City Name" class="input">
+                            </div>
+                            <div class="input-field">
+                                <p>Country Name <span>*</span></p>
+                                <input type="text" name="country" required maxlength="50" placeholder="Enter Your Country Name" class="input">
+                            </div>
+                            <div class="input-field">
+                                <p>Pincode <span>*</span></p>
+                                <input type="text" name="pincode" required maxlength="6" placeholder="390012" min="0" max="999999" class="input">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" name="place_order" class="btn">Place Order</button>
+                </form>
+                <div class="summary">
+                    <h3>My Bag</h3>
+                    <div class="box-container">
+                        {% if cart_products %}
+                            {% for product in cart_products %}
+                                <div class="flex">
+                                    <img src="{{ url_for('static', filename='img/' ~ product.image) }}" alt="" class="image">
+                                    <div>
+                                        <h3 class="name">{{ product.name }}</h3>
+                                        <p class="price">{{ product.price }} X {{ product.qty if product.qty else 1 }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="empty">Your cart is empty</p>
+                        {% endif %}
+                    </div>
+                    <div class="grand-total"><span>Total Amount Payable: </span>₹{{ grand_total }}/-</div>
+                </div>
+            </div>           
+        </section>
+        
+        {% include 'footer.html' %}
+    </div>
+</body>
+</html>

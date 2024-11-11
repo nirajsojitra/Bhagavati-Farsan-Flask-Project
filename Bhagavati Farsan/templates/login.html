@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhagavati Farsan - Login Now</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <section class="form-container">
+            <div class="title">
+                <img src="{{ url_for('static', filename='img/download.png') }}" alt="">
+                <h1>Login Now</h1>
+                <p>Login now to explore authentic flavors on the Bhagavati Farsan website!</p>
+            </div>
+
+            {# Display flash messages if any #}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('login') }}" method="POST">
+                <div class="input-field">
+                    <p>Your Email <sub>*</sub></p>
+                    <input type="email" name="email" required placeholder="Enter Your Email" maxlength="50"
+                           oninput="this.value = this.value.replace(/\s/g, '')">
+                </div>
+
+                <div class="input-field">
+                    <p>Your Password <sub>*</sub></p>
+                    <input type="password" name="pass" required placeholder="Enter Your Password" maxlength="50"
+                           oninput="this.value = this.value.replace(/\s/g, '')">
+                </div>
+
+                <input type="submit" name="submit" value="Login now" class="btn">
+                <p>Do not have an account? <a href="{{ url_for('register') }}">Register Now</a></p>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

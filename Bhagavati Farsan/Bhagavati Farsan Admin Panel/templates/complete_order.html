@@ -1,0 +1,69 @@
+<!-- templates/complete_order.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin_style.css') }}">
+    <title>Green Coffee Admin Panel - Confirm Order Page</title>
+</head>
+<body>
+    {% include 'admin_header.html' %}
+
+    <div class="main">
+        <div class="banner">
+            <h1>Confirm Orders</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a> <span>/ Confirm Orders</span>
+        </div>
+
+        <section class="order-container">
+            <h1 class="heading">Total Confirmed Orders</h1>
+            <div class="box-container">
+                {% if orders %}
+                    {% for order in orders %}
+                    {% if order.status == 'complete' %}
+                        <div class="box">
+                            <div class="status" style="color: {{ 'green' if order.status == 'complete' else 'red' }}">{{ order.status }}</div>
+                            <div class="detail">
+                                <p>User Name: <span>{{ order.name }}</span></p>
+                                <p>User ID: <span>{{ order.id }}</span></p>
+                                <p>Placed On: <span>{{ order.date }}</span></p>
+                                <p>User Number: <span>{{ order.number }}</span></p>
+                                <p>User Email: <span>{{ order.email }}</span></p>
+                                <p>Total Price: <span>{{ order.price }}</span></p>
+                                <p>Method: <span>{{ order.method }}</span></p>
+                                <p>Address: <span>{{ order.address }}</span></p>
+                            </div>
+                            <form action="{{ url_for('complete_order') }}" method="post">
+                                <input type="hidden" name="order_id" value="{{ order.id }}">
+                                <select name="update_payment">
+                                    <option value="" selected disabled>{{ order.payment_status }}</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="complete">Complete</option>
+                                </select>
+                                <div class="flex-btn">
+                                    <button type="submit" name="update_order" class="btn">Update Payment</button>
+                                    <button type="submit" name="delete_order" class="btn">Delete Order</button>
+                                </div>
+                            </form>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="empty">
+                        <p>No orders have been confirmed yet</p>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    {% include 'alert.html' %}
+</body>
+</html>

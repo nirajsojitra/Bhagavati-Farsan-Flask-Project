@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_style.css') }}">
+    <title>Admin Panel - Read Product</title>
+</head>
+<body>
+
+{% include 'admin_header.html' %}
+
+<div class="main">
+    <div class="banner">
+        <h1>Read Product</h1>
+    </div>
+    <div class="title2">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a><span> / Read Product</span>
+    </div>
+
+    <section class="read-post">
+        <h1 class="heading">Read Product</h1>
+        
+        {% if product %}
+            <form action="" method="post">
+                <input type="hidden" name="product_id" value="{{ product['product_id'] }}">
+
+                <div class="status" style="color: {% if product['status'] == 'active' %}green{% else %}red{% endif %};">
+                    {{ product['status'] }}
+                </div>
+
+                {% if product['image'] %}
+                    <img src="{{ url_for('static', filename='img/' + product['image']) }}" class="image" alt="Product Image">
+                {% endif %}
+
+                <div class="price">₹{{ product['price'] }}/-</div>
+                <div class="title">{{ product['name'] }}</div>
+                <div class="content">{{ product['product_details'] }}</div>
+
+                <div class="flex-btn">
+                    <a href="" class="btn">Edit</a>
+                    <button type="submit" name="delete" class="btn" onclick="return confirm('Delete this product?');">Delete</button>
+                    <a href="{{ url_for('view_product') }}" class="btn">Go Back</a>
+                </div>
+            </form>
+        {% else %}
+            <div class="empty">
+                <p>No product found! <br>
+                    <a href="{{ url_for('add_product') }}" class="btn" style="margin-top: 1.5rem;">Add Product</a>
+                </p>
+            </div>
+        {% endif %}
+    </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+{% include 'alert.html' %}
+
+</body>
+</html>

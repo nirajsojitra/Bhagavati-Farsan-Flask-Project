@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <title>Bhagavati Farsan - Cart Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="main">
+        <div class="banner">
+            <h1>My Cart</h1>
+        </div>
+        <div class="title2">
+            <a href="{{ url_for('home') }}">Home </a><span>/ Cart</span>
+        </div>
+        <section class="products">
+            <h1 class="title">Products added in Cart</h1>
+            <div class="box-container">
+                {% if cart_items %}
+                    {% for cart in cart_items %}
+                        <form action="" method="post" class="box">
+                            <input type="hidden" name="cart_id" value="{{ cart.id }}">
+                            <img src="{{ url_for('static', filename='img/' + cart.product.image) }}" alt="" class="img">
+                            <h3 class="name">{{ cart.product.name }}</h3>
+                            <div class="flex">
+                                <p class="price">Price ${{ cart.product.price }} /-</p>
+                                <input type="number" name="qty" required min="1" value="{{ cart.qty }}" max="99" class="qty">
+                                <button type="submit" name="update_cart" class="bx bxs-edit fa-edit"></button>
+                            </div>
+                            <p class="sub-total">Sub total: <span>₹{{ cart.sub_total }}</span></p>
+                            <button type="submit" name="delete_item" class="btn" onclick="return confirm('Delete this item?')">Delete</button>
+                        </form>
+                    {% endfor %}
+                {% else %}
+                    <p class="empty">No products added yet!</p>
+                {% endif %}
+            </div>
+
+            {% if grand_total != 0 %}
+            <div class="cart-total">
+                <p>Total amount payable: <span>₹ {{ grand_total }} /-</span></p>
+                <div class="button">
+                    <form action="" method="post">
+                        <button type="submit" name="empty_cart" class="btn" onclick="return confirm('Are you sure you want to empty your cart?')">Empty Cart</button>
+                    </form>
+                    <a href="{{ url_for('checkout') }}" class="btn">Proceed to Checkout</a>
+                </div>
+            </div>
+            {% endif %}
+        </section>
+        {% include 'footer.html' %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% include 'alert.html' %}
+</body>
+</html>

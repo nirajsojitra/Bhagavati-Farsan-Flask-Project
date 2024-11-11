@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin_style.css') }}">
+    <title>Bhagavati Farsan Admin Panel - Register Users</title>
+</head>
+<body>
+    <!-- Include the admin header -->
+    {% include 'admin_header.html' %}
+
+    <div class="main">
+        <div class="banner">
+            <h1>Register Users</h1>
+        </div>
+
+        <div class="title2">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a><span> / Register Users</span>
+        </div>
+
+        <section class="accounts">
+            <h1 class="heading">Register Users</h1>
+            <div class="box-container">
+                {% if users %}
+                    {% for user in users %}
+                        <div class="box">
+                            <p>User ID: <span>{{ user.id }}</span></p>
+                            <p>User Name: <span>{{ user.name }}</span></p>
+                            <p>User Email: <span>{{ user.email }}</span></p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty">
+                        <p>No user registered yet</p>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <!-- Include the alert script -->
+    {% include 'alert.html' %}
+</body>
+</html>

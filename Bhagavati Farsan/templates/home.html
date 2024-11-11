@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <title>Bhagavati Farsan - Home Page</title>
+    
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <div class="main">
+        <section class="home-section">
+            <div class="slider">
+                <div class="slider__slider slider1">
+                    <div class="overlay"></div>
+                    <div class="slider-detail">
+                        <h1>Bringing gujarat's finest farsaan to you</h1>
+                        <p>ગુજરાત નું શ્રેષ્ઠ ફરસાણ તમારા આંગણે</p>
+                        <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="slider__slider slider2">
+                    <div class="overlay"></div>
+                    <div class="slider-detail">
+                        <h1>Where every bite is a taste of tradition</h1>
+                        <p>જ્યાં દરેક કણ મા પરંપરા નો સ્વાદ છે</p>
+                        <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="slider__slider slider3">
+                    <div class="overlay"></div>
+                    <div class="slider-detail">
+                        <h1>Farsaan That Completes Any Gujarati Festival</h1>
+                        <p>ફરસાણ જે ગુજરાતના કોઈ પણ તહેવારને પૂરું કરે</p>
+                        <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="slider__slider slider4">
+                    <div class="overlay"></div>
+                    <div class="slider-detail">
+                        <h1>Spicy Gujarati Farsaan, Bringing You True Flavor</h1>
+                        <p>ગુજરાતનું ચટાકેદાર ફરસાણ, પ્હોંચાડે તમને સાચા સ્વાદ સુધી</p>
+                        <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="slider__slider slider5">
+                    <div class="overlay"></div>
+                    <div class="slider-detail">
+                        <h1>Gujarati Farsaan, Delightful Taste in Every Bite</h1>
+                        <p>ગુજરાતનું ફરસાણ, દરેક બાઇટમાં મજાનું સ્વાદ</p>
+                        <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="left-arrow"><i class="bx bxs-left-arrow"></i></div>
+                <div class="right-arrow"><i class="bx bxs-right-arrow"></i></div>
+            </div>
+        </section>
+
+
+        <section class="shop">
+            <div class="title">
+                <img src="{{ url_for('static', filename='/img/download.png') }}" alt="logo">
+                <h1>Trending Products</h1>
+            </div>
+            
+            <div class="box-container">
+                <div class="box">
+                    <img src="{{ url_for('static', filename='/image/methi_khakhra.png') }}" alt="logo">
+                    <div class="lbl">
+                        <div class="lbl1">
+                    <p class="name">Methi Khakhra</p>
+                    <p class="price">Rs. 60.00</p>
+                    <p class="qty">250g</p>
+                        </div>
+                </div>
+                    <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                    
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='image/chana chor.png') }}" alt="logo">
+                    <div class="lbl">
+                    <p class="name">Chana Chor</p>
+                    <p class="price">Rs. 60.00</p>
+                    <p class="qty">250g</p>
+                    </div>
+                    <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='image/moli papadi.png') }}" alt="logo">
+                    <div class="lbl">
+                    <p class="name">Mori Papdi</p>
+                    <p class="price">Rs. 60.00</p>
+                    <p class="qty">250g</p>
+                    </div>
+                    <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='image/masala bundi.png') }}" alt="logo">
+                    <div class="lbl">
+                        <div class="lbl1">
+                    <p class="name">Masala Bundi</p>
+                    <p class="price">Rs. 60.00</p>
+                    <p class="qty">250g</p>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='image/bhavanagari.png') }}" alt="logo">
+                    <div class="lbl">
+                    <p class="name">Bhavnagari Gathiya</p>
+                    <p class="price">Rs. 60.00</p>
+                    <p class="qty">250g</p>
+                    </div>
+                    <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='image/chokha chakkari.png') }}" alt="logo">
+                    <div class="lbl">
+                    <p class="name">chakli</p>
+                    <p class="price">Rs. 60.00</p>
+                    <p class="qty">250g</p>
+                    </div>
+                    <a href="{{ url_for('view_product') }}" class="btn">Shop Now</a>
+                
+                </div>
+
+                
+            </div>
+        </section>
+       
+
+        <section class="services">
+            <div class="box-container">
+                <div class="box">
+                    <img src="{{ url_for('static', filename='img/icon2.png') }}" alt="">
+                    <div class="detail">
+                        <h3>Great Savings</h3>
+                        <p>save big every order</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='img/icon1.png') }}" alt="">
+                    <div class="detail">
+                        <h3>24*7 Support</h3>
+                        <p>one-on-one support</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='img/icon0.png') }}" alt="">
+                    <div class="detail">
+                        <h3>Gift Vouchers</h3>
+                        <p>vouchers on every festivals</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <img src="{{ url_for('static', filename='img/icon.png') }}" alt="">
+                    <div class="detail">
+                        <h3>Worldwide Delivery</h3>
+                        <p>dronship worldwide</p>
+                    </div>
+                </div>                
+            </div>
+        </section>
+
+        
+        {% include 'footer.html' %}
+    </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% include 'alert.html' %}
+</body>
+</html>

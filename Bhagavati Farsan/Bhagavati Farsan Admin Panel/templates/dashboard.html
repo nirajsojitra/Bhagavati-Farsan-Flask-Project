@@ -1,0 +1,93 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin_style.css') }}">
+    <title>Bhagavati Farsan admin panel - dashboard page</title>
+</head>
+<body>
+
+    {% include 'admin_header.html' %}
+
+<div class="main">
+    <div class="banner">
+        <h1>dashboard</h1>
+     </div>
+<div class="title2">
+    <a href="{{ url_for('dashboard') }}">home</a><span> / dashboard</span>
+</div>
+
+<section class="dashboard">
+    <h1 class="heading">dashboard</h1>
+    <div class="box-container">
+        <div class="box">
+            <h3>welcome!</h3>
+            <p>{{ fetch_profile['name'] }}</p>
+            <a href="#" class="btn">profile</a>
+        </div>
+
+        <div class="box">
+            <h3>{{ num_of_products }}</h3>
+            <p>products added</p>
+            <a href="{{ url_for('add_product') }}" class="btn">add new products</a>
+        </div>
+
+        <div class="box">
+            <h3>{{ num_of_active_products }}</h3>
+            <p>total active products</p>
+            <a href="{{ url_for('active') }}" class="btn">view active products</a>
+        </div>
+
+        <div class="box">
+            <h3>{{ num_of_deactive_products }}</h3>
+            <p>total deactive products</p>
+            <a href="{{ url_for('deactive') }}" class="btn">view deactive products</a>
+        </div>
+
+        <div class="box">
+            <h3>{{ num_of_users }}</h3>
+            <p>registered users</p>
+            <a href="{{ url_for('user_account') }}" class="btn">view users</a>
+        </div>
+
+        <div class="box">
+            <h3>{{ num_of_admin }}</h3>
+            <p>registered admin</p>
+            <a href="{{ url_for('admin_account') }}" class="btn">view admin</a>
+        </div>
+
+        <div class="box">
+            <h3>{{ num_of_message }}</h3>
+            <p>unread messages</p>
+            <a href="{{ url_for('admin_message') }}" class="btn">view messages</a>
+        </div>
+
+        <div class="box">
+            <h3>{{ num_of_orders }}</h3>
+            <p>total Received order</p>
+            <a href="{{ url_for('order') }}" class="btn">view orders</a>
+        </div>
+
+        <div class="box">
+            <h3>{{ num_of_confirm_orders }}</h3>
+            <p>total confirmed orders</p>
+            <a href="{{ url_for('complete_order') }}" class="btn">view confirm orders</a>
+        </div>
+
+        <div class="box">
+            <h3>{{ num_of_canceled_orders }}</h3>
+            <p>total canceled orders</p>
+            <a href="{{ url_for('cancel_order') }}" class="btn">view canceled orders</a>
+        </div>
+    </div>
+</section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
